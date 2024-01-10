@@ -51,6 +51,21 @@ func add(num1, num2) int {
 }
 ```
 
+## Literal Function
+
+```go
+// Without parameters
+func() {
+    fmt.Println("Hello")
+}()
+
+// With parameters
+func(name string) {
+    fmt.Println("Hello", name)
+}("John")
+```
+
+
 ## Loop Declaration
 
 ```go
@@ -152,3 +167,109 @@ func main() {
     fmt.Println(p) // {Jane Doe}
 }
 ```
+
+## Maps
+
+Maps are key-value pairs and are similar to objects in JavaScript.
+
+Keys must be of the same type, values must be of the same type.
+
+```go
+// Define map
+colors := map[string]string{
+    "red":  "#ff0000",
+    "blue": "#0000ff",
+}
+
+// Delete from map
+delete(colors, "red")
+```
+
+### Alternative
+
+```go
+// Define map
+colors := make(map[string]string)
+
+// Assign key values
+colors["white"] = "#ffffff"
+```
+
+### Alternative
+
+```go
+// Define map
+var colors map[string]string
+
+// Assign key values
+colors["white"] = "#ffffff"
+```
+
+## Interfaces
+
+Interfaces are collections of method signatures that an object can implement.
+
+As general rules:
+
+- If a type has a function with the same signature as the interface, it automatically implements that interface.
+- We don't need to explicitly say that it implements the interface.
+
+```go
+type bot interface {
+    getGreeting() string
+}
+
+type englishBot struct{}
+
+func (englishBot) getGreeting() string {
+    return "Hello"
+}
+```
+
+## Go Routines
+
+Go routines are used to run functions concurrently.
+
+```go
+func main() {
+    go print("Hello")
+    print("World")
+}
+
+func print(text string) {
+    fmt.Println(text)
+}
+```
+
+### Alternative
+
+```go
+func main() {
+    go func(text string) {
+        fmt.Println(text)
+    }("Hello")
+    fmt.Println("World")
+}
+```
+
+## Channels
+
+Channels are used to communicate between go routines.
+
+`<-` operator is used to send and receive values to and from a channel, the direction of the arrow indicates the direction of the data flow.
+
+The close function is used to close a channel, it is optional but it is a good practice to close channels when they are not used anymore.
+
+```go
+func main() {
+    c := make(chan string) // Create channel
+    go print("Hello", c)
+    fmt.Println(<-c) // Receive value from channel
+}
+
+func print(text string, c chan string) {
+    c <- text // Send value to channel
+    close(c) // Close channel (optional)
+}
+```
+
