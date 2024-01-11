@@ -29,3 +29,4 @@ This repo contains my notes and examples for learning Golang.
 - [Golang Playground](https://play.golang.org/)
 - [Golang Tour](https://tour.golang.org/welcome/1)
 - [Go by Example](https://gobyexample.com/)
+- [Go Style Decisions](https://google.github.io/styleguide/go/decisions.html)
